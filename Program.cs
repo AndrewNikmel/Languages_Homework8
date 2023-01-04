@@ -11,53 +11,42 @@
 // 9 5 3 2
 // 8 4 4 2
 
-int[,] CreateRandom2dArray(int rows, int cols, int min, int max){
-    int[,] array = new int[rows, cols];
-    for(int i = 0; i < rows; i++){
-        for(int j = 0; j < cols; j++){
-            array[i,j]=new Random().Next(min, max+1);
+// int[,] CreateRandom2dArray(int rows, int cols, int min, int max){
+//     int[,] array = new int[rows, cols];
+//     for(int i = 0; i < rows; i++){
+//         for(int j = 0; j < cols; j++){
+//             array[i,j]=new Random().Next(min, max+1);
             
-        }
-    }
-    return array;
-}
+//         }
+//     }
+//     return array;
+// }
 
-void Show2dArray(int[,] array){
-    for(int i = 0; i < array.GetLength(0); i++){
-        for(int j = 0; j < array.GetLength(1); j++){
-            Console.Write(array[i,j]+ " ");
-        }
-        Console.WriteLine();
-    }
-}
-
-void SortRows(int[,] array){
-    for(int i = 0; i < array.GetLength(0); i++){
-        for(int j = 0; j < array.GetLength(1)-i-1; j++){
-            if(array[i,j]>array[i,j+1]){
-                int max = array[i,j];
-                array[i,j] = array[i,j+1];
-                array[i,j+1] = max;
-                Console.Write(max + " ");
-            }
-        }
-        
-    }
-
-}
+// void Show2dArray(int[,] array){
+//     for(int i = 0; i < array.GetLength(0); i++){
+//         for(int j = 0; j < array.GetLength(1); j++){
+//             Console.Write(array[i,j]+ " ");
+//         }
+//         Console.WriteLine();
+//     }
+// }
 
 
-Console.WriteLine("Enter the amount of the rows: ");
-int rows = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Enter the amount of the columns: ");
-int cols = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Enter the amount of the minimal: ");
-int min = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Enter the amount of the maximal: ");
-int max = Convert.ToInt32(Console.ReadLine());
-int[,] array = CreateRandom2dArray(rows,cols,min,max);
-Show2dArray(array);
-SortRows(array);
+    
+
+
+
+// Console.WriteLine("Enter the amount of the rows: ");
+// int rows = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Enter the amount of the columns: ");
+// int cols = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Enter the amount of the minimal: ");
+// int min = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Enter the amount of the maximal: ");
+// int max = Convert.ToInt32(Console.ReadLine());
+// int[,] array = CreateRandom2dArray(rows,cols,min,max);
+// Show2dArray(array);
+// SortNumbers(array);
 
 
 // Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
@@ -78,13 +67,64 @@ SortRows(array);
 
 
 
-// Задача 60. ...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
+// Задача 60. DONE...Сформируйте трёхмерный массив из неповторяющихся двузначных чисел. Напишите программу, которая будет построчно выводить массив, добавляя индексы каждого элемента.
 // Массив размером 2 x 2 x 2 (надо проверить, действительно ли числа не повторяются)
 // 66(0,0,0) 25(0,1,0)
 // 34(1,0,0) 41(1,1,0)
 // 27(0,0,1) 90(0,1,1)
 // 26(1,0,1) 55(1,1,1)
 
+
+int[,,] CreateRandom3dArray(int rows, int cols, int smth, int min, int max){
+    int[,,] array = new int[rows, cols, smth];
+    for(int i = 0; i < rows; i++){
+        for(int j = 0; j < cols; j++){
+            for(int k = 0; k < smth; k++){
+            array[i,j,k]=new Random().Next(min, max+1);
+            }
+        }
+    }
+    return array;
+}
+
+void Show3dArray(int[,,] array){
+    for(int i = 0; i < array.GetLength(0); i++){
+        for(int j = 0; j < array.GetLength(1); j++){
+            for(int k = 0; k < array.GetLength(2); k++){
+            Console.Write($" {array[i,j,k]} ({i},{j},{k})");
+            }
+        }
+        Console.WriteLine();
+    }
+    Console.WriteLine();
+}
+
+void Prove3dArray(int[,,] array){
+    for(int i = 0; i < array.GetLength(0); i++){
+        for(int j = 0; j < array.GetLength(1); j++){
+            for(int k = 0; k < array.GetLength(2); k++){
+                if(array[i,j,k] == array[i+1,j,k] || array[i,j,k] == array[i,j+1,k] || array[i,j,k] == array[i,j,k+1]){
+                    Console.WriteLine("The 3d array has equal numbers. We have to start again");
+                }
+                else
+                    Console.WriteLine("The 3d array has been build correct");
+            }
+        }
+    }
+}
+    
+
+Console.WriteLine("Enter the amount of rows: ");
+int rows = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Enter the amount of columns: ");
+int cols = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Enter the amount of the value< that measures the 3d dimension: ");
+int smth = Convert.ToInt32(Console.ReadLine());
+int min = 9;
+int max = 100;
+int [,,] array = CreateRandom3dArray(rows, cols, smth, min, max);
+Show3dArray(array);
+Prove3dArray(array);
 
 
 // Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
