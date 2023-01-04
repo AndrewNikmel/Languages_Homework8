@@ -75,61 +75,116 @@
 // 26(1,0,1) 55(1,1,1)
 
 
-int[,,] CreateRandom3dArray(int rows, int cols, int smth, int min, int max){
-    int[,,] array = new int[rows, cols, smth];
-    for(int i = 0; i < rows; i++){
-        for(int j = 0; j < cols; j++){
-            for(int k = 0; k < smth; k++){
-            array[i,j,k]=new Random().Next(min, max+1);
-            }
-        }
-    }
-    return array;
-}
+// int[,,] CreateRandom3dArray(int rows, int cols, int smth, int min, int max){
+//     int[,,] array = new int[rows, cols, smth];
+//     for(int i = 0; i < rows; i++){
+//         for(int j = 0; j < cols; j++){
+//             for(int k = 0; k < smth; k++){
+//             array[i,j,k]=new Random().Next(min, max+1);
+//             }
+//         }
+//     }
+//     return array;
+// }
 
-void Show3dArray(int[,,] array){
-    for(int i = 0; i < array.GetLength(0); i++){
-        for(int j = 0; j < array.GetLength(1); j++){
-            for(int k = 0; k < array.GetLength(2); k++){
-            Console.Write($" {array[i,j,k]} ({i},{j},{k})");
-            }
-        }
-        Console.WriteLine();
-    }
-    Console.WriteLine();
-}
+// void Show3dArray(int[,,] array){
+//     for(int i = 0; i < array.GetLength(0); i++){
+//         for(int j = 0; j < array.GetLength(1); j++){
+//             for(int k = 0; k < array.GetLength(2); k++){
+//             Console.Write($" {array[i,j,k]} ({i},{j},{k})");
+//             }
+//         }
+//         Console.WriteLine();
+//     }
+//     Console.WriteLine();
+// }
 
-void Prove3dArray(int[,,] array){
-    for(int i = 0; i < array.GetLength(0); i++){
-        for(int j = 0; j < array.GetLength(1); j++){
-            for(int k = 0; k < array.GetLength(2); k++){
-                if(array[i,j,k] == array[i+1,j,k] || array[i,j,k] == array[i,j+1,k] || array[i,j,k] == array[i,j,k+1]){
-                    Console.WriteLine("The 3d array has equal numbers. We have to start again");
-                }
-                else
-                    Console.WriteLine("The 3d array has been build correct");
-            }
-        }
-    }
-}
+// void Prove3dArray(int[,,] array){
+//     for(int i = 0; i < array.GetLength(0); i++){
+//         for(int j = 0; j < array.GetLength(1); j++){
+//             for(int k = 0; k < array.GetLength(2); k++){
+//                 if(array[i,j,k] == array[i+1,j,k] || array[i,j,k] == array[i,j+1,k] || array[i,j,k] == array[i,j,k+1]){
+//                     Console.WriteLine("The 3d array has equal numbers. We have to start again");
+//                 }
+//                 else
+//                     Console.WriteLine("The 3d array has been build correct");
+//             }
+//         }
+//     }
+// }
     
 
-Console.WriteLine("Enter the amount of rows: ");
-int rows = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Enter the amount of columns: ");
-int cols = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Enter the amount of the value< that measures the 3d dimension: ");
-int smth = Convert.ToInt32(Console.ReadLine());
-int min = 9;
-int max = 100;
-int [,,] array = CreateRandom3dArray(rows, cols, smth, min, max);
-Show3dArray(array);
-Prove3dArray(array);
+// Console.WriteLine("Enter the amount of rows: ");
+// int rows = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Enter the amount of columns: ");
+// int cols = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Enter the amount of the value< that measures the 3d dimension: ");
+// int smth = Convert.ToInt32(Console.ReadLine());
+// int min = 9;
+// int max = 100;
+// int [,,] array = CreateRandom3dArray(rows, cols, smth, min, max);
+// Show3dArray(array);
+// Prove3dArray(array);
 
 
-// Задача 62. Напишите программу, которая заполнит спирально массив 4 на 4.
+// Задача 62. DONE Напишите программу, которая заполнит спирально массив 4 на 4.
 // Например, на выходе получается вот такой массив:
 // 01 02 03 04
 // 12 13 14 05
 // 11 16 15 06
 // 10 09 08 07
+
+
+int[,] CreateSpiral2dArray(int rows, int cols){
+    int iStart = 0;
+    int iFin = 0;
+    int jStart = 0;
+    int jFin = 0;
+    int k = 1;
+    int i = 0;
+    int j = 0;
+    int[,] array = new int[rows, cols];
+    while(k<=rows*cols){
+        array[i,j] = k;
+        if(i == iStart && j < rows- jFin -1){
+            j++;
+        }
+        else if(j == rows - jFin - 1 && i < cols - iFin -1){
+            i++;
+        }
+        else if(i == cols - iFin - 1 && j > jStart){
+            j--;
+        }
+        else
+            i--;
+        
+        if((i == iStart + 1) && (j == jStart) && (jStart != cols - jFin -1)){
+            iStart++;
+            iFin++;
+            jStart++;
+            jFin++;
+        }
+        k++;
+    }
+    for(i = 0; i < array.GetLength(0); i++){
+        for(j = 0; j < array.GetLength(1); j++){
+        }
+    }
+    return array;
+}    
+
+void Show2dArray(int[,] array){
+    for(int i = 0; i < array.GetLength(0); i++){
+        for(int j = 0; j < array.GetLength(1); j++){
+            Console.Write(array[i,j]+ " ");
+        }
+        Console.WriteLine();
+    }
+}
+
+Console.WriteLine("Enter the amount of rows: ");
+int rows = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Enter the amount of columns: ");
+int cols = Convert.ToInt32(Console.ReadLine());
+int [,] array = CreateSpiral2dArray(rows, cols);
+Show2dArray(array);
