@@ -48,14 +48,69 @@
 // Show2dArray(array);
 // SortNumbers(array);
 
-
-// Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, которая будет находить строку с наименьшей суммой элементов.
+// Додумать, не работает..
+// Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, 
+// которая будет находить строку с наименьшей суммой элементов.
 // Например, задан массив:
 // 1 4 7 2
 // 5 9 2 3
 // 8 4 2 4
 // 5 2 6 7
 // Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка
+
+
+int [,] CreateRandom2Darray(int rows, int cols, int min, int max){
+    int [,] array = new int [rows, cols];
+    for(int i = 0; i < rows; i++){
+        for(int j = 0; j < cols; j++){
+            array[i,j]=new Random().Next(min,max);
+        }
+    }
+    return array;
+}
+
+void Show2DArray(int [,] array){
+    for(int i = 0; i < array.GetLength(0); i++){
+        for(int j = 0; j < array.GetLength(1); j++){
+            Console.Write(array[i,j] + " ");
+        }
+        Console.WriteLine();
+    }
+}
+
+void FindTheSmallestLine(int [,] array){
+    int minimalSum = int.MaxValue; 
+    int indexMinimalRow = 0;
+    for(int i = 0; i < array.GetLength(0); i++){
+        int rowsSumm = 0;
+        for(int j = 0; j < array.GetLength(1); j++){
+            rowsSumm += array[i,j];
+        }
+        if(rowsSumm < minimalSum){
+            minimalSum = rowsSumm;
+            indexMinimalRow = i;
+        }
+        Console.WriteLine($"The line with the minimal summ of the elements has number {i}");
+    }
+    
+
+}
+
+
+Console.WriteLine("Enter the amount of rows: ");
+int rows = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Enter the amount of columns: ");
+int cols = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Enter the minimal value: ");
+int min = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Enter the maximal value: ");
+int max = Convert.ToInt32(Console.ReadLine());
+int [,] array = CreateRandom2Darray(rows, cols, min, max);
+Show2DArray(array);
+Console.WriteLine();
+FindTheSmallestLine(array);
+
+
 
 // Задача 58. DONE : Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
 // Например, даны 2 матрицы:
@@ -65,55 +120,57 @@
 // 18 20
 // 15 18
 
-int[,] CreateRandom2dArray(int rows, int cols, int min, int max){
-    int[,] array = new int[rows, cols];
-    for(int i = 0; i < rows; i++){
-        for(int j = 0; j < cols; j++){
-            array[i,j]=new Random().Next(min, max+1);
-        }
-    }
-    return array;
-}
 
-void Show2dArray(int[,] array){
-    for(int i = 0; i < array.GetLength(0); i++){
-        for(int j = 0; j < array.GetLength(1); j++){
-            Console.Write(array[i,j]+ " ");
-        }
-        Console.WriteLine();
-    }
-}
 
-int [,] MultiplyedArrays(int [,] firstArray, int [,] secondArray){
-    int [,] multyArray = new int [firstArray.GetLength(0),firstArray.GetLength(1)];
-    for(int i = 0; i<firstArray.GetLength(0); i++){
-        for(int j = 0; j<secondArray.GetLength(1); j++){
-            for(int x = 0; x<secondArray.GetLength(0); x++){
-                multyArray[i,j] += firstArray[i,x]*secondArray[x,j];
-            }
-            Console.Write(multyArray[i,j] + ", ");
-        }
-        Console.WriteLine();
-    }
-    return multyArray;
-}
+// int[,] CreateRandom2dArray(int rows, int cols, int min, int max){
+//     int[,] array = new int[rows, cols];
+//     for(int i = 0; i < rows; i++){
+//         for(int j = 0; j < cols; j++){
+//             array[i,j]=new Random().Next(min, max+1);
+//         }
+//     }
+//     return array;
+// }
 
-Console.WriteLine("Enter the amount of rows and columns: ");
-int rows = Convert.ToInt32(Console.ReadLine());
-int cols = rows;
-Console.WriteLine("Enter the minimal value: ");
-int min = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Enter the maximal value: ");
-int max = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine();
-int [,] firstArray = CreateRandom2dArray(rows, cols, min, max);
-Show2dArray(firstArray);
-Console.WriteLine();
-int [,] secondArray = CreateRandom2dArray(rows, cols, min, max);
-Show2dArray(secondArray);
-Console.WriteLine();
-int [,] resultArray = MultiplyedArrays(firstArray, secondArray);
-Console.WriteLine(resultArray);
+// void Show2dArray(int[,] array){
+//     for(int i = 0; i < array.GetLength(0); i++){
+//         for(int j = 0; j < array.GetLength(1); j++){
+//             Console.Write(array[i,j]+ " ");
+//         }
+//         Console.WriteLine();
+//     }
+// }
+
+// int [,] MultiplyedArrays(int [,] firstArray, int [,] secondArray){
+//     int [,] multyArray = new int [firstArray.GetLength(0),firstArray.GetLength(1)];
+//     for(int i = 0; i<firstArray.GetLength(0); i++){
+//         for(int j = 0; j<secondArray.GetLength(1); j++){
+//             for(int x = 0; x<secondArray.GetLength(0); x++){
+//                 multyArray[i,j] += firstArray[i,x]*secondArray[x,j];
+//             }
+//             Console.Write(multyArray[i,j] + ", ");
+//         }
+//         Console.WriteLine();
+//     }
+//     return multyArray;
+// }
+
+// Console.WriteLine("Enter the amount of rows and columns: ");
+// int rows = Convert.ToInt32(Console.ReadLine());
+// int cols = rows;
+// Console.WriteLine("Enter the minimal value: ");
+// int min = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Enter the maximal value: ");
+// int max = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine();
+// int [,] firstArray = CreateRandom2dArray(rows, cols, min, max);
+// Show2dArray(firstArray);
+// Console.WriteLine();
+// int [,] secondArray = CreateRandom2dArray(rows, cols, min, max);
+// Show2dArray(secondArray);
+// Console.WriteLine();
+// int [,] resultArray = MultiplyedArrays(firstArray, secondArray);
+// Console.WriteLine(resultArray);
 
 
 
