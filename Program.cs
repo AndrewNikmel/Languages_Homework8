@@ -57,13 +57,64 @@
 // 5 2 6 7
 // Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка
 
-// Задача 58: Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
+// Задача 58. DONE : Задайте две матрицы. Напишите программу, которая будет находить произведение двух матриц.
 // Например, даны 2 матрицы:
 // 2 4 | 3 4
 // 3 2 | 3 3
 // Результирующая матрица будет:
 // 18 20
 // 15 18
+
+int[,] CreateRandom2dArray(int rows, int cols, int min, int max){
+    int[,] array = new int[rows, cols];
+    for(int i = 0; i < rows; i++){
+        for(int j = 0; j < cols; j++){
+            array[i,j]=new Random().Next(min, max+1);
+        }
+    }
+    return array;
+}
+
+void Show2dArray(int[,] array){
+    for(int i = 0; i < array.GetLength(0); i++){
+        for(int j = 0; j < array.GetLength(1); j++){
+            Console.Write(array[i,j]+ " ");
+        }
+        Console.WriteLine();
+    }
+}
+
+int [,] MultiplyedArrays(int [,] firstArray, int [,] secondArray){
+    int [,] multyArray = new int [firstArray.GetLength(0),firstArray.GetLength(1)];
+    for(int i = 0; i<firstArray.GetLength(0); i++){
+        for(int j = 0; j<secondArray.GetLength(1); j++){
+            for(int x = 0; x<secondArray.GetLength(0); x++){
+                multyArray[i,j] += firstArray[i,x]*secondArray[x,j];
+            }
+            Console.Write(multyArray[i,j] + ", ");
+        }
+        Console.WriteLine();
+    }
+    return multyArray;
+}
+
+Console.WriteLine("Enter the amount of rows and columns: ");
+int rows = Convert.ToInt32(Console.ReadLine());
+int cols = rows;
+Console.WriteLine("Enter the minimal value: ");
+int min = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Enter the maximal value: ");
+int max = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine();
+int [,] firstArray = CreateRandom2dArray(rows, cols, min, max);
+Show2dArray(firstArray);
+Console.WriteLine();
+int [,] secondArray = CreateRandom2dArray(rows, cols, min, max);
+Show2dArray(secondArray);
+Console.WriteLine();
+int [,] resultArray = MultiplyedArrays(firstArray, secondArray);
+Console.WriteLine(resultArray);
+
 
 
 
@@ -118,7 +169,7 @@
 // int rows = Convert.ToInt32(Console.ReadLine());
 // Console.WriteLine("Enter the amount of columns: ");
 // int cols = Convert.ToInt32(Console.ReadLine());
-// Console.WriteLine("Enter the amount of the value< that measures the 3d dimension: ");
+// Console.WriteLine("Enter the amount of the value, that measures the 3d dimension: ");
 // int smth = Convert.ToInt32(Console.ReadLine());
 // int min = 9;
 // int max = 100;
@@ -135,56 +186,56 @@
 // 10 09 08 07
 
 
-int[,] CreateSpiral2dArray(int rows, int cols){
-    int iStart = 0;
-    int iFin = 0;
-    int jStart = 0;
-    int jFin = 0;
-    int k = 1;
-    int i = 0;
-    int j = 0;
-    int[,] array = new int[rows, cols];
-    while(k<=rows*cols){
-        array[i,j] = k;
-        if(i == iStart && j < rows- jFin -1){
-            j++;
-        }
-        else if(j == rows - jFin - 1 && i < cols - iFin -1){
-            i++;
-        }
-        else if(i == cols - iFin - 1 && j > jStart){
-            j--;
-        }
-        else
-            i--;
+// int[,] CreateSpiral2dArray(int rows, int cols){
+//     int iStart = 0;
+//     int iFin = 0;
+//     int jStart = 0;
+//     int jFin = 0;
+//     int k = 1;
+//     int i = 0;
+//     int j = 0;
+//     int[,] array = new int[rows, cols];
+//     while(k<=rows*cols){
+//         array[i,j] = k;
+//         if(i == iStart && j < rows- jFin -1){
+//             j++;
+//         }
+//         else if(j == rows - jFin - 1 && i < cols - iFin -1){
+//             i++;
+//         }
+//         else if(i == cols - iFin - 1 && j > jStart){
+//             j--;
+//         }
+//         else
+//             i--;
         
-        if((i == iStart + 1) && (j == jStart) && (jStart != cols - jFin -1)){
-            iStart++;
-            iFin++;
-            jStart++;
-            jFin++;
-        }
-        k++;
-    }
-    for(i = 0; i < array.GetLength(0); i++){
-        for(j = 0; j < array.GetLength(1); j++){
-        }
-    }
-    return array;
-}    
+//         if((i == iStart + 1) && (j == jStart) && (jStart != cols - jFin -1)){
+//             iStart++;
+//             iFin++;
+//             jStart++;
+//             jFin++;
+//         }
+//         k++;
+//     }
+//     for(i = 0; i < array.GetLength(0); i++){
+//         for(j = 0; j < array.GetLength(1); j++){
+//         }
+//     }
+//     return array;
+// }    
 
-void Show2dArray(int[,] array){
-    for(int i = 0; i < array.GetLength(0); i++){
-        for(int j = 0; j < array.GetLength(1); j++){
-            Console.Write(array[i,j]+ " ");
-        }
-        Console.WriteLine();
-    }
-}
+// void Show2dArray(int[,] array){
+//     for(int i = 0; i < array.GetLength(0); i++){
+//         for(int j = 0; j < array.GetLength(1); j++){
+//             Console.Write(array[i,j]+ " ");
+//         }
+//         Console.WriteLine();
+//     }
+// }
 
-Console.WriteLine("Enter the amount of rows: ");
-int rows = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Enter the amount of columns: ");
-int cols = Convert.ToInt32(Console.ReadLine());
-int [,] array = CreateSpiral2dArray(rows, cols);
-Show2dArray(array);
+// Console.WriteLine("Enter the amount of rows: ");
+// int rows = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Enter the amount of columns: ");
+// int cols = Convert.ToInt32(Console.ReadLine());
+// int [,] array = CreateSpiral2dArray(rows, cols);
+// Show2dArray(array);
