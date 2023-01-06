@@ -48,8 +48,8 @@
 // Show2dArray(array);
 // SortNumbers(array);
 
-// Додумать, не работает..
-// Задача 56: Задайте прямоугольный двумерный массив. Напишите программу, 
+
+// Задача 56: DONE Задайте прямоугольный двумерный массив. Напишите программу, 
 // которая будет находить строку с наименьшей суммой элементов.
 // Например, задан массив:
 // 1 4 7 2
@@ -78,7 +78,7 @@ void Show2DArray(int [,] array){
     }
 }
 
-void FindTheSmallestLine(int [,] array){
+int FindTheSmallestLine(int [,] array){
     int minimalSum = int.MaxValue; 
     int indexMinimalRow = 0;
     for(int i = 0; i < array.GetLength(0); i++){
@@ -90,10 +90,8 @@ void FindTheSmallestLine(int [,] array){
             minimalSum = rowsSumm;
             indexMinimalRow = i;
         }
-        Console.WriteLine($"The line with the minimal summ of the elements has number {i}");
     }
-    
-
+    return indexMinimalRow;
 }
 
 
@@ -108,7 +106,7 @@ int max = Convert.ToInt32(Console.ReadLine());
 int [,] array = CreateRandom2Darray(rows, cols, min, max);
 Show2DArray(array);
 Console.WriteLine();
-FindTheSmallestLine(array);
+Console.WriteLine($"The line with the smallest summ of elements is {FindTheSmallestLine(array)+1}");
 
 
 
