@@ -1,7 +1,6 @@
 ﻿
 
-
-// Задача 54: Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.
+// Задача 54: DONE.. Задайте двумерный массив. Напишите программу, которая упорядочит по убыванию элементы каждой строки двумерного массива.
 // Например, задан массив:
 // 1 4 7 2
 // 5 9 2 3
@@ -10,43 +9,62 @@
 // 7 4 2 1
 // 9 5 3 2
 // 8 4 4 2
+/////////////
 
-// int[,] CreateRandom2dArray(int rows, int cols, int min, int max){
-//     int[,] array = new int[rows, cols];
-//     for(int i = 0; i < rows; i++){
-//         for(int j = 0; j < cols; j++){
-//             array[i,j]=new Random().Next(min, max+1);
+int[,] CreateRandom2dArray(int rows, int cols, int min, int max){
+    int[,] array = new int[rows, cols];
+    for(int i = 0; i < rows; i++){
+        for(int j = 0; j < cols; j++){
+            array[i,j]=new Random().Next(min, max+1);
             
-//         }
-//     }
-//     return array;
-// }
+        }
+    }
+    return array;
+}
 
-// void Show2dArray(int[,] array){
-//     for(int i = 0; i < array.GetLength(0); i++){
-//         for(int j = 0; j < array.GetLength(1); j++){
-//             Console.Write(array[i,j]+ " ");
-//         }
-//         Console.WriteLine();
-//     }
-// }
+void Show2dArray(int[,] array){
+    for(int i = 0; i < array.GetLength(0); i++){
+        for(int j = 0; j < array.GetLength(1); j++){
+            Console.Write(array[i,j]+ " ");
+        }
+        Console.WriteLine();
+    }
+}
 
-
+void SortNumbers(int [,] array){
+    for(int i = 0; i < array.GetLength(0); i++){
+        for(int j = 0; j < array.GetLength(1)-1; j++){
+            if(array [i,j]<array [i,j+1]){
+                int max = array [i,j];
+                array [i,j]=array [i,j+1];
+                array [i,j+1]=max;
+            }
+            
+        }
+        Console.WriteLine();
+    }
+    for(int i = 0; i < array.GetLength(0); i++){
+        for(int j = 0; j < array.GetLength(1); j++){
+            Console.Write("{0,2}", array [i,j]);
+        }
+        Console.WriteLine();
+    }
+}
     
 
 
 
-// Console.WriteLine("Enter the amount of the rows: ");
-// int rows = Convert.ToInt32(Console.ReadLine());
-// Console.WriteLine("Enter the amount of the columns: ");
-// int cols = Convert.ToInt32(Console.ReadLine());
-// Console.WriteLine("Enter the amount of the minimal: ");
-// int min = Convert.ToInt32(Console.ReadLine());
-// Console.WriteLine("Enter the amount of the maximal: ");
-// int max = Convert.ToInt32(Console.ReadLine());
-// int[,] array = CreateRandom2dArray(rows,cols,min,max);
-// Show2dArray(array);
-// SortNumbers(array);
+Console.WriteLine("Enter the amount of the rows: ");
+int rows = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Enter the amount of the columns: ");
+int cols = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Enter the amount of the minimal: ");
+int min = Convert.ToInt32(Console.ReadLine());
+Console.WriteLine("Enter the amount of the maximal: ");
+int max = Convert.ToInt32(Console.ReadLine());
+int[,] array = CreateRandom2dArray(rows,cols,min,max);
+Show2dArray(array);
+SortNumbers(array);
 
 
 // Задача 56: DONE Задайте прямоугольный двумерный массив. Напишите программу, 
@@ -59,54 +77,54 @@
 // Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка
 
 
-int [,] CreateRandom2Darray(int rows, int cols, int min, int max){
-    int [,] array = new int [rows, cols];
-    for(int i = 0; i < rows; i++){
-        for(int j = 0; j < cols; j++){
-            array[i,j]=new Random().Next(min,max);
-        }
-    }
-    return array;
-}
+// int [,] CreateRandom2Darray(int rows, int cols, int min, int max){
+//     int [,] array = new int [rows, cols];
+//     for(int i = 0; i < rows; i++){
+//         for(int j = 0; j < cols; j++){
+//             array[i,j]=new Random().Next(min,max);
+//         }
+//     }
+//     return array;
+// }
 
-void Show2DArray(int [,] array){
-    for(int i = 0; i < array.GetLength(0); i++){
-        for(int j = 0; j < array.GetLength(1); j++){
-            Console.Write(array[i,j] + " ");
-        }
-        Console.WriteLine();
-    }
-}
+// void Show2DArray(int [,] array){
+//     for(int i = 0; i < array.GetLength(0); i++){
+//         for(int j = 0; j < array.GetLength(1); j++){
+//             Console.Write(array[i,j] + " ");
+//         }
+//         Console.WriteLine();
+//     }
+// }
 
-int FindTheSmallestLine(int [,] array){
-    int minimalSum = int.MaxValue; 
-    int indexMinimalRow = 0;
-    for(int i = 0; i < array.GetLength(0); i++){
-        int rowsSumm = 0;
-        for(int j = 0; j < array.GetLength(1); j++){
-            rowsSumm += array[i,j];
-        }
-        if(rowsSumm < minimalSum){
-            minimalSum = rowsSumm;
-            indexMinimalRow = i;
-        }
-    }
-    return indexMinimalRow;
-}
+// int FindTheSmallestLine(int [,] array){
+//     int minimalSum = int.MaxValue; 
+//     int indexMinimalRow = 0;
+//     for(int i = 0; i < array.GetLength(0); i++){
+//         int rowsSumm = 0;
+//         for(int j = 0; j < array.GetLength(1); j++){
+//             rowsSumm += array[i,j];
+//         }
+//         if(rowsSumm < minimalSum){
+//             minimalSum = rowsSumm;
+//             indexMinimalRow = i;
+//         }
+//     }
+//     return indexMinimalRow;
+// }
 
 
-Console.WriteLine("Enter the amount of rows: ");
-int rows = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Enter the amount of columns: ");
-int cols = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Enter the minimal value: ");
-int min = Convert.ToInt32(Console.ReadLine());
-Console.WriteLine("Enter the maximal value: ");
-int max = Convert.ToInt32(Console.ReadLine());
-int [,] array = CreateRandom2Darray(rows, cols, min, max);
-Show2DArray(array);
-Console.WriteLine();
-Console.WriteLine($"The line with the smallest summ of elements is {FindTheSmallestLine(array)+1}");
+// Console.WriteLine("Enter the amount of rows: ");
+// int rows = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Enter the amount of columns: ");
+// int cols = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Enter the minimal value: ");
+// int min = Convert.ToInt32(Console.ReadLine());
+// Console.WriteLine("Enter the maximal value: ");
+// int max = Convert.ToInt32(Console.ReadLine());
+// int [,] array = CreateRandom2Darray(rows, cols, min, max);
+// Show2DArray(array);
+// Console.WriteLine();
+// Console.WriteLine($"The line with the smallest summ of elements is {FindTheSmallestLine(array)+1}");
 
 
 
